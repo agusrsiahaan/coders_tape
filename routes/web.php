@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Route::get('contact', function(){
 // 	return view('contact');
@@ -24,6 +24,7 @@ Route::get('/', function () {
 // });
 
 //or we can use this directly to return the view
+Route::view('/', 'home');
 Route::view('contact', 'contact');
 Route::view('about', 'about');
 

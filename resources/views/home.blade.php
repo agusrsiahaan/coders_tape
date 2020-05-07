@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-<h1>About Us</h1>
-
-<p>Company bio here...</p>
+<h1>Welcome to Laravel 5.8</h1>
 @endsection
