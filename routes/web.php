@@ -26,3 +26,17 @@ Route::get('/', function () {
 //or we can use this directly to return the view
 Route::view('contact', 'contact');
 Route::view('about', 'about');
+
+Route::get('customers', function(){
+
+	$customers = [
+		'Agus',
+		'Ronaldo',
+		'Siahaan',
+		'Agus Ronaldo Siahaan',
+	];
+
+	return view('customers', [
+		'customers' => $customers,
+	]);
+});
