@@ -24,6 +24,7 @@
 	<div class="input-group">
 		<input type="text" name="name" placeholder="Your Name">
 	</div>
+	<div>{{ $errors->first('name') }}</div>
 	<button type="submit">Add Customer</button>
 	@csrf
 </form>
