@@ -21,17 +21,24 @@
 </ul> -->
 
 <form action="customers" method="POST" class="pb-5">
+
 	<div class="input-group">
-		<input type="text" name="name" placeholder="Your Name">
+		<input type="text" name="name" placeholder="Your Name" value="{{ old('name') }}">
 	</div>
 	<div>{{ $errors->first('name') }}</div>
+
+	<div class="input-group">
+		<input type="email" name="email" placeholder="Your Email" value="{{ old('email') }}">
+	</div>
+	<div>{{ $errors->first('email') }}</div>
+
 	<button type="submit">Add Customer</button>
 	@csrf
 </form>
 
 <ul>
 	@foreach($customers as $customer)
-		<li>{{$customer->name}}</li>
+		<li>{{$customer->name}} <span class="text-muted">({{ $customer->email }})</span></li>
 	@endforeach
 </ul>
 
