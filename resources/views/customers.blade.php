@@ -20,6 +20,14 @@
 
 </ul> -->
 
+<form action="customers" method="POST" class="pb-5">
+	<div class="input-group">
+		<input type="text" name="name" placeholder="Your Name">
+	</div>
+	<button type="submit">Add Customer</button>
+	@csrf
+</form>
+
 <ul>
 	@foreach($customers as $customer)
 		<li>{{$customer->name}}</li>

@@ -21,4 +21,14 @@ class CustomersController extends Controller
 			'customers' => $customers,
 		]);
     }
+
+    public function store()
+    {
+    	//dd(request('name'));
+    	$customer = new Customer();
+    	$customer->name = request('name');
+    	$customer->save();
+
+    	return back();
+    }
 }
