@@ -61,4 +61,16 @@ class CustomersController extends Controller
     	//return back();
         return redirect('customers');
     }
+
+    // public function show($customer)
+    // {
+    //     //$customer = Customer::find($customer);
+    //     $customer = Customer::where('id', $customer)->firstOrFail();
+    //     return view('customers.show', compact('customer'));
+    // }
+
+    public function show(Customer $customer)
+    {
+        return view('customers.show', compact('customer'));
+    }
 }
