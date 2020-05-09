@@ -53,6 +53,12 @@
 		</select>
 	</div>
 
+	<!-- <div class="form-group">
+		<label for="random">Random</label>
+		<input type="text" name="random" value="{{ old('random') }}" class="form-control">
+		<div>{{ $errors->first('random') }}</div>
+	</div> -->
+
 	<button type="submit" class="btn btn-primary">Add Customer</button>
 	@csrf
 </form>

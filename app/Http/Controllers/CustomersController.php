@@ -9,8 +9,11 @@ class CustomersController extends Controller
 {
     public function list()
     {
-        $activeCustomers = Customer::where('active', 1)->get();
-        $inactiveCustomers = Customer::where('active', 0)->get();
+        //$activeCustomers = Customer::where('active', 1)->get();
+        //$inactiveCustomers = Customer::where('active', 0)->get();
+        $activeCustomers = Customer::active()->get();
+        $inactiveCustomers = Customer::inactive()->get();
+        
     	$customers = Customer::all();
   		//$customers = [
 		// 'Agus',
@@ -31,15 +34,19 @@ class CustomersController extends Controller
     	$data = request()->validate([
     		'name' => 'required|min:3',
     		'email' => 'required|email',
-            'active' => 'required|numeric'
+            'active' => 'required|numeric',
+            //'random' => '',
     	]);
 
+        //dd($data);
+
+        $customer = Customer::create($data);
     	//dd(request('name'));
-    	$customer = new Customer();
-    	$customer->name = request('name');
-    	$customer->email = request('email');
-        $customer->active = request('active');
-    	$customer->save();
+    	// $customer = new Customer();
+    	// $customer->name = request('name');
+    	// $customer->email = request('email');
+     //    $customer->active = request('active');
+    	// $customer->save();
 
     	return back();
     }
