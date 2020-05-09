@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Company;
 
 class CustomersController extends Controller
 {
@@ -13,7 +14,8 @@ class CustomersController extends Controller
         //$inactiveCustomers = Customer::where('active', 0)->get();
         $activeCustomers = Customer::active()->get();
         $inactiveCustomers = Customer::inactive()->get();
-        
+        $companies = Company::all();
+
     	$customers = Customer::all();
   		//$customers = [
 		// 'Agus',
@@ -26,6 +28,7 @@ class CustomersController extends Controller
 			'customers' => $customers,
             'activeCustomers' => $activeCustomers,
             'inactiveCustomers' => $inactiveCustomers,
+            'companies' => $companies,
 		]);
     }
 
@@ -35,6 +38,7 @@ class CustomersController extends Controller
     		'name' => 'required|min:3',
     		'email' => 'required|email',
             'active' => 'required|numeric',
+            'company_id' => 'required|numeric',
             //'random' => '',
     	]);
 

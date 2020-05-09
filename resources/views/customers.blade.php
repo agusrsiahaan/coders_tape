@@ -53,6 +53,15 @@
 		</select>
 	</div>
 
+	<div class="form-group">
+		<label for="company">Company</label>
+		<select name="company_id" id="company" class="form-control">
+			@foreach ($companies as $c)
+				<option value="{{$c->id}}">{{$c->name}}</option>
+			@endforeach
+		</select>
+	</div>
+
 	<!-- <div class="form-group">
 		<label for="random">Random</label>
 		<input type="text" name="random" value="{{ old('random') }}" class="form-control">
@@ -80,16 +89,30 @@
 	<div class="col-6">
 		<ul>
 			@foreach($activeCustomers as $active)
-				<li>{{$active->name}} <span class="text-muted">({{$active->email}})</span></li>
+				<li>{{$active->name}} <span class="text-muted">({{$active->email}})</span><span>({{$active->company->name}})</span></li>
 			@endforeach
 		</ul>
 	</div>
 	<div class="col-6">
 		<ul>
 			@foreach($inactiveCustomers as $inactive)
-				<li>{{$inactive->name}} <span class="text-muted">({{$inactive->email}})</span></li>
+				<li>{{$inactive->name}} <span class="text-muted">({{$inactive->email}})</span><span>({{$inactive->company->name}})</span></li>
 			@endforeach
 		</ul>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="col-12">
+		@foreach($companies as $c)
+			<h3>{{ $c->name }}</h3>
+
+			<ul>
+				@foreach($c->customers as $cust)
+					<li>{{$cust->name}}</li>
+				@endforeach
+			</ul>
+		@endforeach
 	</div>
 </div>
 @endsection
