@@ -8,7 +8,7 @@ use App\Company;
 
 class CustomersController extends Controller
 {
-    public function list()
+    public function index()
     {
         //$activeCustomers = Customer::where('active', 1)->get();
         //$inactiveCustomers = Customer::where('active', 0)->get();
@@ -24,12 +24,18 @@ class CustomersController extends Controller
 		// 'Agus Ronaldo Siahaan',
 		// ];
 
-		return view('customers', [
+		return view('customers.index', [
 			'customers' => $customers,
             'activeCustomers' => $activeCustomers,
             'inactiveCustomers' => $inactiveCustomers,
             'companies' => $companies,
 		]);
+    }
+
+    public function create()
+    {
+        $companies = Company::all();
+        return view('customers.create', compact('companies'));
     }
 
     public function store()
@@ -52,6 +58,7 @@ class CustomersController extends Controller
      //    $customer->active = request('active');
     	// $customer->save();
 
-    	return back();
+    	//return back();
+        return redirect('customers');
     }
 }
