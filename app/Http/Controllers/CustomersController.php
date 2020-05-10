@@ -35,22 +35,26 @@ class CustomersController extends Controller
     public function create()
     {
         $companies = Company::all();
-        return view('customers.create', compact('companies'));
+        $customer = new Customer();
+
+        return view('customers.create', compact('companies', 'customer'));
     }
 
     public function store()
     {
-    	$data = request()->validate([
-    		'name' => 'required|min:3',
-    		'email' => 'required|email',
-            'active' => 'required|numeric',
-            'company_id' => 'required|numeric',
-            //'random' => '',
-    	]);
+
+
+    	// $data = request()->validate([
+    	// 	'name' => 'required|min:3',
+    	// 	'email' => 'required|email',
+     //        'active' => 'required|numeric',
+     //        'company_id' => 'required|numeric',
+     //        //'random' => '',
+    	// ]);
 
         //dd($data);
 
-        $customer = Customer::create($data);
+        Customer::create($this->validateRequest());
     	//dd(request('name'));
     	// $customer = new Customer();
     	// $customer->name = request('name');
@@ -72,5 +76,43 @@ class CustomersController extends Controller
     public function show(Customer $customer)
     {
         return view('customers.show', compact('customer'));
+    }
+
+    public function edit(Customer $customer)
+    {
+        $companies = Company::all();
+
+        return view('customers.edit', compact('customer', 'companies'));
+    }
+
+    public function update(Customer $customer)
+    {
+        // $data = request()->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required',
+        //     'company_id' => 'required',
+        // ]);
+
+        $customer->update($this->validateRequest());
+
+        return redirect('customers/'. $customer->id);
+    }
+
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+
+        return redirect('customers');
+    }
+
+    private function validateRequest()
+    {
+        return request()->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'active' => 'required',
+            'company_id' => 'required',
+        ]);
     }
 }
