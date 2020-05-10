@@ -25,6 +25,10 @@ class ContactFormController extends Controller
 
     	Mail::to('agusr@gmail.com')->send(new ContactFormMail($data));
 
+    	//return redirect('contact')->with('message', 'Thanks for your message. We\'ll be in touch');
+
+    	//atau bisa juga seperti ini
+    	session()->flash('message', 'Thanks for your message. We\'ll be in touch');
     	return redirect('contact');
     }
 }
