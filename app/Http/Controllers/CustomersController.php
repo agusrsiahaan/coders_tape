@@ -8,6 +8,14 @@ use App\Company;
 
 class CustomersController extends Controller
 {
+
+    //cara lain dalam membuat middleware auth selain di route web.php
+    public function __construct()
+    {
+        //you can use 'except' and 'only' 
+        $this->middleware('auth')->except(['index']);
+    }
+
     public function index()
     {
         //$activeCustomers = Customer::where('active', 1)->get();

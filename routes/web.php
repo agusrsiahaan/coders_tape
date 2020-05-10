@@ -42,6 +42,7 @@ Route::view('about', 'about');
 
 //route diatas bisa diwakilkan dengan route resource satu baris ini
 Route::resource('customers', 'CustomersController');
+//Route::resource('customers', 'CustomersController')->middleware('auth');
 
 Auth::routes();
 
