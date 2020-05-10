@@ -42,3 +42,7 @@ Route::view('about', 'about');
 
 //route diatas bisa diwakilkan dengan route resource satu baris ini
 Route::resource('customers', 'CustomersController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

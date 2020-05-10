@@ -10,7 +10,8 @@
 
 <div class="container">
   
-  @include('layouts.nav', ['username' => 'agusronaldosiahaan'])
+  <!-- @include('layouts.nav', ['username' => 'agusronaldosiahaan']) -->
+  @include('layouts.nav')
 
   @if(session()->has('message'))
   <div class="alert alert-primary" role="alert">
