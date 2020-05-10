@@ -25,7 +25,10 @@
 
 //or we can use this directly to return the view
 Route::view('/', 'home');
-Route::view('contact', 'contact');
+
+Route::get('contact', 'ContactFormController@create');
+Route::post('contact', 'ContactFormController@store');
+
 Route::view('about', 'about');
 
 // Route::get('customers', 'CustomersController@index');
