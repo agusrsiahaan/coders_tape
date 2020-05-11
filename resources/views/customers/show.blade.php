@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title')
 	Create Customer
@@ -7,14 +7,14 @@
 @section('content')
 <div class="row">
 	<div class="col-12">
-		<h1>Add New Customer</h1>		
+		<h1>Details Customer</h1>		
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-12">
 		<h1>Details for {{$customer->name}}</h1>
-		<p><a href="/customers/{{ $customer->id }}">Edit</a></p>
+		<p><a href="/customers/{{ $customer->id }}/edit">Edit</a></p>
 
 		<form action="/customers/{{$customer->id}}" method="POST">
 			@method('DELETE')
