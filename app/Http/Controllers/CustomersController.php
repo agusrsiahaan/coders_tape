@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\Company;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeNewUserMail;
+use App\Events\NewCustomerRegisteredEvent;
 
 class CustomersController extends Controller
 {
@@ -62,7 +65,10 @@ class CustomersController extends Controller
 
         //dd($data);
 
-        Customer::create($this->validateRequest());
+        $customer = Customer::create($this->validateRequest());
+
+        event(new NewCustomerRegisteredEvent($customer));
+
     	//dd(request('name'));
     	// $customer = new Customer();
     	// $customer->name = request('name');
@@ -71,7 +77,7 @@ class CustomersController extends Controller
     	// $customer->save();
 
     	//return back();
-        return redirect('customers');
+        //return redirect('customers');
     }
 
     // public function show($customer)
