@@ -77,7 +77,7 @@ class CustomersController extends Controller
     	// $customer->save();
 
     	//return back();
-        //return redirect('customers');
+        return redirect('customers');
     }
 
     // public function show($customer)
