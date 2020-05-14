@@ -30,6 +30,12 @@
 	</select>
 </div>
 
+<div class="form-group d-flex flex-column">
+	<label for="image">Profile Image</label>
+	<input type="file" name="image">
+	<div>{{ $errors->first('image') }}</div>
+</div>
+
 <!-- <div class="form-group">
 		<label for="random">Random</label>
 		<input type="text" name="random" value="{{ old('random') }}" class="form-control">

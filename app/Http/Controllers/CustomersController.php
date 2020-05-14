@@ -67,6 +67,8 @@ class CustomersController extends Controller
 
         $customer = Customer::create($this->validateRequest());
 
+        $this->storeImage($customer);
+
         event(new NewCustomerRegisteredEvent($customer));
 
     	//dd(request('name'));
@@ -110,6 +112,8 @@ class CustomersController extends Controller
 
         $customer->update($this->validateRequest());
 
+        $this->storeImage($customer);
+
         return redirect('customers/'. $customer->id);
     }
 
@@ -122,11 +126,51 @@ class CustomersController extends Controller
 
     private function validateRequest()
     {
-        return request()->validate([
+        // return request()->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required',
+        //     'company_id' => 'required',
+        // ]);
+
+        // $validatedData = request()->validate([
+        //     'name' => 'required|min:3',
+        //     'email' => 'required|email',
+        //     'active' => 'required',
+        //     'company_id' => 'required',
+        // ]);
+
+        // if (request()->hasFile('image')) {
+        //     request()->validate([
+        //         'image' => 'file|image|max:5000',
+        //     ]);
+        // }
+        // return $validatedData;
+
+
+
+        return tap (request()->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
             'active' => 'required',
             'company_id' => 'required',
-        ]);
+        ]), function(){
+
+            if (request()->hasFile('image')) {
+                request()->validate([
+                    'image' => 'file|image|max:5000',
+                ]);
+            }
+        });
     }
+
+    private function storeImage($customer)
+    {
+        if (request()->has('image')) {
+            $customer->update([
+                'image' => request()->image->store('uploads', 'public'),
+            ]);
+        }
+    }
+
 }

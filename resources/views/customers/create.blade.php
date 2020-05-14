@@ -13,7 +13,7 @@
 
 <div class="row">
 	<div class="col-12">
-	<form action="/customers" method="POST" class="pb-5">
+	<form action="/customers" method="POST" class="pb-5" enctype="multipart/form-data">
 		
 	@include('customers.form')
 		
