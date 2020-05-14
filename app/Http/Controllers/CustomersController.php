@@ -28,7 +28,7 @@ class CustomersController extends Controller
         $inactiveCustomers = Customer::inactive()->get();
         $companies = Company::all();
 
-    	$customers = Customer::all();
+    	$customers = Customer::with('company')->paginate(15);
   		//$customers = [
 		// 'Agus',
 		// 'Ronaldo',
