@@ -46,6 +46,8 @@ class CustomersController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Customer::class);
+
         $companies = Company::all();
         $customer = new Customer();
 
@@ -119,7 +121,9 @@ class CustomersController extends Controller
     }
 
     public function destroy(Customer $customer)
-    {
+    {   
+        $this->authorize('delete', $customer);
+
         $customer->delete();
 
         return redirect('customers');
