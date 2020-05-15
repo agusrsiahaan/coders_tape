@@ -24,7 +24,21 @@
 // });
 
 //or we can use this directly to return the view
-Route::view('/', 'home');
+Route::get('/', function() {
+
+	// $user = factory(\App\User::class)->create();
+	// $phone = new \App\Phone();
+
+	// $phone->phone = '123-123-123';
+	// $user->phone()->save($phone);
+
+	$user = factory(\App\User::class)->create();
+
+	$user->phone()->create([
+		'phone' => '1231212323',
+	]);
+
+});
 
 Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact', 'ContactFormController@store')->name('contact.store');
