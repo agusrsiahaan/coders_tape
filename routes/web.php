@@ -40,6 +40,33 @@ Route::get('/', function() {
 
 });
 
+Route::get('/post', function() {
+
+	// $user = factory(\App\User::class)->create();
+
+	// $post = new \App\Post([
+
+	// 	'title' => 'Title',
+	// 	'Body' => 'Body',
+	// 	'user_id' => $user->id,
+	// ]);
+
+	$user = factory(\App\User::class)->create();
+
+	$user->posts()->create([
+		'title' => 'Title',
+		'Body' => 'Body',
+	]);
+
+	$user->posts->first()->title ='New Post';
+	$user->posts->first()->body = 'New Body';
+
+	$user->push();
+
+	dd($user->posts);
+
+});
+
 Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact', 'ContactFormController@store')->name('contact.store');
 
