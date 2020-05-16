@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('profile/{profile}', 'ProfilesController@show');
+Route::get('posting/{post}-{slug}', 'PostsController@show');
+
 // Route::get('contact', function(){
 // 	return view('contact');
 // });
