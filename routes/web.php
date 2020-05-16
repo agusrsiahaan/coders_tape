@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('home');
+});
 
 // Route::get('contact', function(){
 // 	return view('contact');
@@ -24,21 +24,39 @@
 // });
 
 //or we can use this directly to return the view
-Route::get('/', function() {
+// Route::get('/', function() {
 
-	// $user = factory(\App\User::class)->create();
-	// $phone = new \App\Phone();
+// 	// $user = factory(\App\User::class)->create();
+// 	// $phone = new \App\Phone();
 
-	// $phone->phone = '123-123-123';
-	// $user->phone()->save($phone);
+// 	// $phone->phone = '123-123-123';
+// 	// $user->phone()->save($phone);
 
-	$user = factory(\App\User::class)->create();
+// 	$user = factory(\App\User::class)->create();
 
-	$user->phone()->create([
-		'phone' => '1231212323',
+// 	$user->phone()->create([
+// 		'phone' => '1231212323',
+// 	]);
+
+// });
+
+Route::get('/many', function(){
+
+	$user = \App\User::first();
+
+
+	$user->roles()->sync([
+
+		1 => [
+			'name' => 'Agus Ronaldo',
+		]
+
 	]);
 
+	dd($user->roles->first()->pivot->name);
+
 });
+
 
 Route::get('/post', function() {
 
@@ -66,6 +84,24 @@ Route::get('/post', function() {
 	dd($user->posts);
 
 });
+
+Route::get('/role', function() {
+
+	$user = \App\User::first();
+
+	$roles = \App\Role::all();
+
+	//$user->roles()->attach($roles);
+	//$user->roles()->detach($roles);
+
+	//$user->roles()->attach([1, 3, 5]);
+	//$user->roles()->sync([1, 3, 5]);
+	$user->roles()->syncWithoutDetaching([3]);
+
+	dd($roles);
+
+});
+
 
 Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact', 'ContactFormController@store')->name('contact.store');
