@@ -81,7 +81,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{ __('text.introduction') }}
+                    {{ __('text.hello'), ['user' => 'Agus Ronaldo'] }}
+                    {{ trans_choice('text.plural', 1) }}
+                    {{ trans_choice('text.plural', 10) }}
                 </div>
 
                 <div class="links">
